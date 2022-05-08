@@ -9,12 +9,11 @@ class HelloController extends Controller
 {
    public function index(Request $request)
    {
-       dd($request);
        $user = Auth::user();
        $sort = $request->sort;
        $param = [
            'sort' => $sort,
-           'user' => $user
+           'user' => $user,
        ];
        return view('top.index', $param);
    }
