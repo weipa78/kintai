@@ -70,4 +70,7 @@
         </div>
     </div>
 </div>
+<div class="login-message">
+	<span>メールアドレス「yamada@yahoo.co.jp」、パスワード「asdfghjk」を入力し、<br>ログインボタンを押すと、山田太郎という（ユーザー名）でログインできます。</span>
+</div>
 @endsection

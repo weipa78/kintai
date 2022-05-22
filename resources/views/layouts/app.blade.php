@@ -19,9 +19,17 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
+/*     * { */
+/*     outline: 1px solid red; */
+/*     } */
     .user {
     margin: 30px;
     font-size: 15px;
+    }
+    .login-message {
+    margin: 50px 0px 0px auto;
+    font-size: 20px;
+    text-align: center;
     }
     </style>
 </head>
