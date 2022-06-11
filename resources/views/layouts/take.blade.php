@@ -5,9 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>@yield('title')</title>
 	<style>
-/*      * {
-	outline: 1px solid red;
-	}  */
+/*     *{ */
+/*  	outline: 1px solid red; */
+/*  	}  */
 	body {
 	width: 
 	border: 1px solid gray;
@@ -16,6 +16,7 @@
 	border: 1px solid gray;
 	}
 	.bodySet {
+	
 	display: flex;
 	}
 	.menu {
@@ -36,6 +37,9 @@
 	font-size: 20px;
 	float: right;
 	vertical-align: text-bottom;
+	}
+	.bodySet-menu {
+	width: 160px;
 	}
 	.menu ul{ 
     margin: 0; 
@@ -113,6 +117,9 @@
     form {
     text-align: center;
     }
+    .bodyChange {
+    margin-right: auto;
+    }
     .empTitleBox {
     height: 30px;
     margin: 20px;
@@ -165,6 +172,7 @@
     .alldata {
     background-color: white;
     }
+
 /*     出退勤登録入力フォーム：time/index.blade.php */
     .time-all {
     width: 80%
@@ -177,8 +185,26 @@
 
 
 
-
-
+    .timeTitleBox { 
+    height: 30px;
+    margin: 20px;
+    } 
+    .timeTitle {
+    font-size: 23px;
+    }
+    .updateBox {
+    margin-top: 20px;
+    width: 80%;
+    text-align: left;
+    }
+    .time-index {
+    width: 80%;
+    margin: 0 0 0 100px;
+    }
+    .manageButton {
+    height: 40px;
+    width: 100px;
+    }
     </style>
 </head>
 <body>
@@ -189,16 +215,16 @@
         </div>
         <div class="bodySet">
         	<div class="menu">
-            	<table border="1" >
+            	<table border="1" class="bodySet-menu">
             		<tr><td><a href="/emp_registry_form">社員登録</a></td></tr>
             		<tr><td><a href="/time_registry">出退勤登録</a></td></tr>
-            		<tr><td><a href="/time_manage">出退勤<br>管理/照会</a></td></tr>
+            		<tr><td><a href="/time_manage">出退勤管理/照会</a></td></tr>
             		<tr><td><a href="#">勤怠申請</a></td></tr>
             		<tr><td><a href="#">集計出力</a></td></tr>
             		<tr><td class="surplus"><a href="#"></a></td></tr>
             	</table>
         	</div>
-        	<div>
+        	<div class="bodyChange">
         		@yield('content')
         	</div>
         </div>

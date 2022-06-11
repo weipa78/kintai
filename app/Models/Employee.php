@@ -12,7 +12,7 @@ class Employee extends Model
 //     protected $guarded = array('employeeId');
     
     protected $fillable = [
-        'employeeName', 'employeeFurigana', 'employeeGender',
+        'employeeId', 'employeeName', 'employeeFurigana', 'employeeGender',
         'employeeBirth', 'employeeAge', 'employeePostNo', 'employeeAddress',
         'employeeTel', 'employeeMail'
     ];

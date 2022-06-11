@@ -33,8 +33,20 @@ Route::get('/time_registry', 'App\Http\Controllers\TimeRegistryController@form')
 Route::post('/time_registry_create', 'App\Http\Controllers\TimeRegistryController@create');
 
 // 出退勤管理/照会
+// 一覧メニュー表示
 Route::get('/time_manage', 'App\Http\Controllers\TimeManageController@index');
 
+// 更新入力フォーム表示
+Route::post('/timeUpdateInput', 'App\Http\Controllers\TimeManageController@input');
+// 更新確認画面表示
+Route::post('/timeUpdateConfirm', 'App\Http\Controllers\TimeManageController@updateConfirm');
+// 更新
+Route::post('/timeUpdate', 'App\Http\Controllers\TimeManageController@update');
+
+// 削除確認画面表示
+Route::post('/timeDeleteConfirm', 'App\Http\Controllers\TimeManageController@deleteConfirm');
+// 削除
+Route::post('/timeDelete', 'App\Http\Controllers\TimeManageController@delete');
 
 // 勤怠申請
 // Route::get('', 'App\Http\Controllers\TimeApplyController@add');

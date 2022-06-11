@@ -20,7 +20,7 @@
 		<tr><th>住所</th><td><input class="regi-table" type="text" name="address" value="{{old('address')}}"></td></tr>
 		<tr><th>電話番号</th><td><input class="regi-table" type="text" name="tel" value="{{old('tel')}}"></td></tr>
 		<tr><th>メールアドレス</th><td><input class="regi-table" type="email" name="mail" value="{{old('mail')}}"></td></tr>
-		<tr><th></th><td><button class="emp-registry-button"type="submit">登録</button></td></tr>
+		<tr><th></th><td><button class="emp-registry-button" type="submit">登録</button></td></tr>
 	</table>
 </div>
 </form>

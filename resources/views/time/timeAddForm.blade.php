@@ -24,6 +24,10 @@
 	</table>
 </div>
 </form>
+<div class="divideMsgBox">
+	<span class="divideMsg">※区分は数字で記載：1:出勤, 2:欠勤, 3:遅刻, 4:早退, 5:有休	</span>
+</div>
+
 <div class="timeRegistryMsgBox">
 	<span class="timeRegistryMsg">{{$msg}}</span>
 </div>
