@@ -31,7 +31,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-gradle-plugin:3.2.4.'
+	classpath 'org.springframework.boot:spring-boot-gradle-plugin:3.2.4.RELEASE'
 }
 
 tasks.named('test') {
