@@ -2,32 +2,40 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<script>
+	function init() {
+<!--		alert('aaa');-->
+		document.getElementById("syain_id1").textContent = "";
+		var a = "";
+	}
+</script>
 <title>勤怠メニュー</title>
 </head>
-<body>
+<body onload="init()">
 <h1>勤怠メニュー</h1><br>
 	<h3>社員検索</h3>
-	<form action="/syain" method="post" th:object="${syain2}">
+	<form action="/syain" method="post" th:object="${syain}">
 		<div>
-			<input type="text" th:field="*{syain_id}" placeholder="社員番号">
+			<input type="text" th:field="*{syain_id}" id = "syain_id1" placeholder="社員番号">
 			<input type="submit" value="検索">
 		</div>
 	</form><br>
 	<span th:text="${message1}"></span>
 	
-	<table border="1" th:if="${syain2.syain_id} == '' ">
+	<table border="1" th:if="${syain.syain_id} >= 1 ">
 		<tr>
-			<th>社員番号</th><td th:text="${syain2.syain_id}"></td><th>氏名</th><td th:text="${syain2.name}"></td><th>年齢</th><td th:text="${syain2.age}"></td>
+			<th>社員番号</th><td th:text="${syain.syain_id}"></td><th>氏名</th><td th:text="${syain.name}"></td><th>年齢</th><td th:text="${syain.age}"></td>
 		</tr>
 		<tr>
-			<th>性別</th><td th:text="${syain2.gender}"></td><th>生年月日</th><td th:text="${syain2.birth}"></td><th>メールアドレス</th><td th:text="${syain2.mail}"></td>
+			<th>性別</th><td th:text="${syain.gender}"></td><th>生年月日</th><td th:text="${syain.birth}"></td><th>メールアドレス</th><td th:text="${syain.mail}"></td>
 		</tr>
 		<tr>
-			<th>部署名１</th><td th:text="${syain2.department1}"></td><th>部署名２</th><td th:text="${syain2.department2}"></td><th></th><td></td>
+			<th>部署名１</th><td th:text="${syain.department1}"></td><th>部署名２</th><td th:text="${syain.department2}"></td><th></th><td></td>
 		</tr>
 	</table>
 	<br>
-	<h3>基本情報編集</h3>
+	<h3>基本情報編集</h3><br>
+	<span>別の画面が開きます。</span>
 	<form action="/syain" method="post" th:object="${kihon}">
 		<div>
 			<input type="text" th:field="${kihon.kei_st}" placeholder="契約開始日">

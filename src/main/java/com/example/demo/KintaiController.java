@@ -19,17 +19,16 @@ public class KintaiController {
 	
 	@GetMapping("/")
 	public String init(Model model) {
-		Syain2 syain2 = new Syain2();
+		Syain syain = new Syain();
 		Kihon kihon = new Kihon();
-//		syain2.setSyain_id("");
-		model.addAttribute("syain2", syain2);
+		model.addAttribute("syain", syain);
 		model.addAttribute("kihon", kihon);
 		return "index";
 	}
 	
 	//社員番号で社員情報を検索
 	@PostMapping("/syain")
-	public String syainJyoho(@RequestParam("syain_id") int syain_id, Syain syain, Model model) {
+	public String syainJyoho(@RequestParam("syain_id") int syain_id, Syain syain, Kihon kihon, Model model) {
 		String sql = "SELECT * FROM syain WHERE syain_id = ?";
 		if (syain_id >= 1) {
 			Object[] args = new Object[] {syain_id};
@@ -38,7 +37,9 @@ public class KintaiController {
 		} else {
 			model.addAttribute("message1", "0は入力できません");
 		}
+		
 		model.addAttribute("syain", syain);
+		model.addAttribute("kihon", kihon);
 		return "index";
 	}
 	
