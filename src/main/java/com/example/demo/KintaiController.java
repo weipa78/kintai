@@ -21,6 +21,12 @@ public class KintaiController {
 	public String init(Model model) {
 		Syain syain = new Syain();
 		Kihon kihon = new Kihon();
+		System.out.println("syain = " + syain);
+//		if (syain.getSyain_id() == null) {
+//			syain.setSyain_id("");
+//			syain.setAge("");
+//		}
+		System.out.println("syain = " + syain);
 		model.addAttribute("syain", syain);
 		model.addAttribute("kihon", kihon);
 		return "index";
@@ -28,16 +34,19 @@ public class KintaiController {
 	
 	//社員番号で社員情報を検索
 	@PostMapping("/syain")
-	public String syainJyoho(@RequestParam("syain_id") int syain_id, Syain syain, Kihon kihon, Model model) {
+	public String syainJyoho(@RequestParam("syain_id") String syain_id, Syain syain, Kihon kihon, Model model) {
+		System.out.println("syain_id = " + syain_id);
 		String sql = "SELECT * FROM syain WHERE syain_id = ?";
-		if (syain_id >= 1) {
+		if (syain_id.equals("0")) {
+			model.addAttribute("message1", "1以上の数字を入力してください。");
+		} else if (syain_id.equals("")) {
+			model.addAttribute("message1", "1以上の数字を入力してください。");
+		} else if (syain_id != null && !syain_id.equals("0") && !syain_id.equals(""))  {
 			Object[] args = new Object[] {syain_id};
 			RowMapper<Syain> rowMapper = BeanPropertyRowMapper.newInstance(Syain.class);
 			syain = jdbc.queryForObject(sql, rowMapper, args);
-		} else {
-			model.addAttribute("message1", "0は入力できません");
 		}
-		
+		System.out.println("syain = " + syain);
 		model.addAttribute("syain", syain);
 		model.addAttribute("kihon", kihon);
 		return "index";
