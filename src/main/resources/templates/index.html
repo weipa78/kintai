@@ -5,8 +5,7 @@
 <script>
 	function init() {
 <!--		alert('aaa');-->
-		document.getElementById("syain_id1").textContent = "";
-		var a = "";
+		document.getElementById("syain_id1").textContent = "aaa";
 	}
 </script>
 <title>勤怠メニュー</title>
@@ -16,7 +15,7 @@
 	<h3>社員検索</h3>
 	<form action="/syain" method="post" th:object="${syain}">
 		<div>
-			<input type="text" th:field="*{syain_id}" id = "syain_id1" placeholder="社員番号">
+			<input type="text" th:field="*{syain_id}" id="syain_id1" placeholder="社員番号">
 			<input type="submit" value="検索">
 		</div>
 	</form><br>
