@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>基本契約削除確認画面</title>
+</head>
+<body>
+	<h2>基本契約削除確認画面</h2>
+	
+	社員番号　 ：<span th:text="${kihon.kihon_id}"></span><br>
+	社員名　　 ：<span th:text="${kihon.kihon_name}"></span><br>
+	基本契約No.：<span th:text="${kihon.number}"></span><br>
+	<form th:object="${kihon}">
+		<table border="1">
+			<tr>
+				<th>契約開始日</th>
+				<th>契約終了日</th>
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{mei_st}"></td>
+				<td><input type="text" th:field="*{mei_ed}"></td>
+			</tr>
+			<tr>
+				<th>勤務開始時間</th>
+				<th>昼休憩時間</th>
+				<th>勤務終了時間</th>
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{kinmu_st}"></td>
+				<td><input type="text" th:field="*{hiru_tm}"></td>
+				<td><input type="text" th:field="*{kinmu_ed}"></td>
+			</tr>
+			<tr>
+				<th>昼休憩開始時間</th>
+				<th>昼休憩終了時間</th>
+				<th>定時後休憩開始時間</th>
+				<th>定時後休憩終了時間</th>
+				<th>定時後休憩時間</th>
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{hiru_st}"></td>
+				<td><input type="text" th:field="*{hiru_ed}"></td>
+				<td><input type="text" th:field="*{teiji_st}"></td>
+				<td><input type="text" th:field="*{teiji_ed}"></td>
+				<td><input type="text" th:field="*{teiji_tm}"></td>
+			</tr>
+			<tr>
+				<th>深夜休憩開始時間</th>
+				<th>深夜休憩終了時間</th>
+				<th>深夜休憩時間</th>
+				<th>カウント</th>
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{yoru_st}"></td>
+				<td><input type="text" th:field="*{yoru_ed}"></td>
+				<td><input type="text" th:field="*{yoru_tm}"></td>
+				<td><input type="text" th:field="*{kizami}"></td>
+			</tr>
+		</table>
+		<button type="submit" formaction="deleteProcessing" formmethod="post">削除処理</button>
+		<button type="submit" formaction="canselSelect" formmethod="get">キャンセル</button>
+		<input type="hidden" th:field="*{number}">
+		<input type="hidden" name="kihon_id" th:value="${kihon.kihon_id}">
+		<input type="hidden" name="name" th:value="${kihon.kihon_name}">
+	</form>
+</body>
+</html>

@@ -3,49 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <title>基本契約情報選択画面</title>
+<style>
+	table {
+		font-size: 15px;
+	}
+</style>
+<script>
+//基本契約情報選択画面でラジオボタン選択中は変更削除ボタンを有効にする
+//ラジオボタンを選択していないときは無効にする
+function check(){
+  var flag = true; // 選択されているか否かを判定するフラグ
+ 
+ //ラジオボタンの数だけ判定を繰り返す（ボタンを表すインプットタグがあるので１引く）
+  for(var i=0; i<document.form.number.length-1;i++){
+      // i番目のラジオボタンがチェックされているかを判定
+      if(document.form.number[i].checked){ 
+          flag = true;
+          document.getElementById("disHenko").disabled = false;
+          document.getElementById("disSakujyo").disabled = false;
+      } 
+  }
+}
+</script>
 </head>
 <body>
 	<h2>基本契約情報選択画面</h2>
 	<br>
-	<table border="1">
-		<tr>
-			<th>選択</th>
-			<th>社員番号</th>
-			<th>社員名</th>
-			<th>契約開始日</th>
-			<th>契約終了日</th>
-			<th>勤務開始時間</th>
-			<th>昼休憩時間</th>
-			<th>勤務終了時間</th>
-			<th>昼休憩開始時間</th>
-			<th>昼休憩終了時間</th>
-			<th>定時後休憩開始時間</th>
-			<th>定時後休憩終了時間</th>
-			<th>定時後休憩時間</th>
-			<th>深夜休憩開始時間</th>
-			<th>深夜休憩終了時間</th>
-			<th>深夜休憩時間</th>
-			<th>カウント</th>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-	</table>
+	社員番号　 ：<span th:text="${kihon_id}"></span><br>
+	社員名　　 ：<span th:text="${kihon_name}"></span><br>
+	<form name="form">
+		<button type="submit" formaction="register" formmethod="get">新規登録</button>
+		<button type="submit" formaction="update" formmethod="post" id="disHenko" disabled>更新</button>
+		<button type="submit" formaction="deleteConfirm" formmethod="post" id="disSakujyo" disabled>削除</button>
+		<button type="submit" formaction="canselTop" formmethod="get">キャンセル</button>
+		<table border="1" th:each="kihon : ${kihons}" th:object="${kihon}">
+			<tr>
+				<th class="font">選択</th>
+				<th class="font">基本契約No.</th>
+				<th class="font">契約開始日</th>
+				<th class="font">契約終了日</th>
+				<th class="font">勤務開始時間</th>
+				<th class="font">昼休憩時間</th>
+				<th class="font">勤務終了時間</th>
+				<th class="font">昼休憩開始時間</th>
+				<th class="font">昼休憩終了時間</th>
+				<th class="font">定時後休憩開始時間</th>
+				<th class="font">定時後休憩終了時間</th>
+				<th class="font">定時後休憩時間</th>
+				<th>深夜休憩開始時間</th>
+				<th>深夜休憩終了時間</th>
+				<th>深夜休憩時間</th>
+				<th>カウント</th>
+			</tr>
+			<tr>
+				<td>
+					<input type="radio" name="number" th:value="*{number}" id="number" onClick="return check()">
+					<input type="hidden" name="kihon_id" th:value="*{kihon_id}">
+				</td>
+				<td th:text="*{number}"></td>
+				<td th:text="*{mei_st}"></td>
+				<td th:text="*{mei_ed}"></td>
+				<td th:text="*{kinmu_st}"></td>
+				<td th:text="*{hiru_tm}"></td>
+				<td th:text="*{kinmu_ed}"></td>
+				<td th:text="*{hiru_st}"></td>
+				<td th:text="*{hiru_ed}"></td>
+				<td th:text="*{teiji_st}"></td>
+				<td th:text="*{teiji_ed}"></td>
+				<td th:text="*{teiji_tm}"></td>
+				<td th:text="*{yoru_st}"></td>
+				<td th:text="*{yoru_ed}"></td>
+				<td th:text="*{yoru_tm}"></td>
+				<td th:text="*{kizami}"></td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>

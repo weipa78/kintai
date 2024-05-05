@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>基本契約新規登録確認画面</title>
+</head>
+<body>
+	<h2>基本契約新規登録確認画面</h2>
+	
+	社員番号　 ：<span th:text="${kihon_id}"></span><br>
+	社員名　　 ：<span th:text="${name}"></span><br>
+	<form action="registerProcessing" method="post" th:object="${kihon}">
+		<table border="1">
+			<tr>
+				<th>契約開始日(年-月-日)</th>
+				<th>契約終了日(年-月-日)</th>
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{mei_st}" readonly></td>
+				<td><input type="text" th:field="*{mei_ed}" readonly></td>
+			</tr>
+			<tr>
+				<th>勤務開始時間(時:分:秒)</th>
+				<th>昼休憩時間(分)</th>
+				<th>勤務終了時間(時:分:秒)</th>
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{kinmu_st}" readonly></td>
+				<td><input type="text" th:field="*{hiru_tm}" readonly></td>
+				<td><input type="text" th:field="*{kinmu_ed}" readonly></td>
+			</tr>
+			<tr>
+				<th>昼休憩開始時間(時:分:秒)</th>
+				<th>昼休憩終了時間(時:分:秒)</th>
+				<th>定時後休憩開始時間(時:分:秒)</th>
+				<th>定時後休憩終了時間(時:分:秒)</th>
+				<th>定時後休憩時間(分)</th>
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{hiru_st}" readonly></td>
+				<td><input type="text" th:field="*{hiru_ed}" readonly></td>
+				<td><input type="text" th:field="*{teiji_st}" readonly></td>
+				<td><input type="text" th:field="*{teiji_ed}" readonly></td>
+				<td><input type="text" th:field="*{teiji_tm}" readonly></td>
+			</tr>
+			<tr>
+				<th>深夜休憩開始時間(時:分:秒)</th>
+				<th>深夜休憩終了時間(時:分:秒)</th>
+				<th>深夜休憩時間(分)</th>
+				<th>カウント(分)</th>
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{yoru_st}" readonly></td>
+				<td><input type="text" th:field="*{yoru_ed}" readonly></td>
+				<td><input type="text" th:field="*{yoru_tm}" readonly></td>
+				<td><input type="text" th:field="*{kizami}" readonly></td>
+			</tr>
+		</table>
+		<button type="submit">新規登録処理</button>
+		<input type="hidden" th:field="*{number}">
+		<input type="hidden" th:field="*{kihon_id}">
+		<input type="hidden" th:field="*{kihon_name}">
+	</form>
+</body>
+</html>

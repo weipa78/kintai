@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>基本契約新規登録画面</title>
+<script>
+window.onload = function() {
+	document.getElementById("hiru_tm").value = null;
+	document.getElementById("teiji_tm").value = null;
+	document.getElementById("yoru_tm").value = null;
+	document.getElementById("kizami").value = null;
+}
+</script>
+</head>
+<body>
+	<h2>基本契約新規登録画面</h2>
+	
+	社員番号　 ：<span th:text="${kihon_id}"></span><br>
+	社員名　　 ：<span th:text="${name}"></span><br>
+
+	<form th:object="${kihon}">
+		<ul th:if="${#fields.hasErrors('*')}">
+			<li th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
+		</ul>
+		<table border="1">
+			<tr>
+				<th>契約開始日(年-月-日)</th>
+				<th>契約終了日(年-月-日)</th>
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{mei_st}" placeholder="0000-00-00"></td>
+				<td><input type="text" th:field="*{mei_ed}" placeholder="0000-00-00"></td>
+			</tr>
+			<tr>
+				<th>勤務開始時間(時:分:秒)</th>
+				<th>昼休憩時間(分)</th>
+				<th>勤務終了時間(時:分:秒)</th>
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{kinmu_st}" placeholder="00:00:00"></td>
+				<td><input type="text" th:field="*{hiru_tm}" placeholder="00"></td>
+				<td><input type="text" th:field="*{kinmu_ed}" placeholder="00:00:00"></td>
+			</tr>
+			<tr>
+				<th>昼休憩開始時間(時:分:秒)</th>
+				<th>昼休憩終了時間(時:分:秒)</th>
+				<th>定時後休憩開始時間(時:分:秒)</th>
+				<th>定時後休憩終了時間(時:分:秒)</th>
+				<th>定時後休憩時間(分)</th>
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{hiru_st}" placeholder="00:00:00"></td>
+				<td><input type="text" th:field="*{hiru_ed}" placeholder="00:00:00"></td>
+				<td><input type="text" th:field="*{teiji_st}" placeholder="00:00:00"></td>
+				<td><input type="text" th:field="*{teiji_ed}" placeholder="00:00:00"></td>
+				<td><input type="text" th:field="*{teiji_tm}" placeholder="00"></td>
+			</tr>
+			<tr>
+				<th>深夜休憩開始時間(時:分:秒)</th>
+				<th>深夜休憩終了時間(時:分:秒)</th>
+				<th>深夜休憩時間(分)</th>
+				<th>カウント(分)</th>
+			</tr>
+			<tr>
+				<td><input type="text" th:field="*{yoru_st}" placeholder="00:00:00"></td>
+				<td><input type="text" th:field="*{yoru_ed}" placeholder="00:00:00"></td>
+				<td><input type="text" th:field="*{yoru_tm}" placeholder="00"></td>
+				<td><input type="text" th:field="*{kizami}" placeholder="00"></td>
+			</tr>
+		</table>
+		<button type="submit" formaction="registerConfirm" formmethod="post">新規登録確認</button>
+		<button type="submit" formaction="canselSelect" formmethod="get">キャンセル</button>
+		<input type="hidden" th:field="*{kihon_id}">
+		<input type="hidden" name="name" th:value="${name}">
+	</form>
+</body>
+</html>

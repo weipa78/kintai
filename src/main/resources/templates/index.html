@@ -2,22 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<script>
-	function init() {
-<!--		alert('aaa');-->
-		document.getElementById("syain_id1").textContent = "aaa";
-	}
-</script>
 <title>勤怠メニュー</title>
+<style>
+	body {
+		outline: black 1px solid;
+		width: 600px;
+		height: 400px;
+	}
+</style>
 </head>
-<body onload="init()">
+<body>
 <h1>勤怠メニュー</h1><br>
 	<h3>社員検索</h3>
-	<form action="/syain" method="post" th:object="${syain}">
+	<form method="post" th:object="${syain}">
 		<div>
 			<input type="text" th:field="*{syain_id}" id="syain_id1" placeholder="社員番号">
-			<input type="submit" value="検索">
+			<input type="submit" formaction="/syain" formmethod="post" value="社員情報表示">
+			<input type="submit" formaction="/kihon" formmethod="post" value="基本情報編集（一覧表示）">
 		</div>
+		<ul th:if="${#fields.hasErrors('*')}">
+			<li th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
+		</ul>
 	</form><br>
 	<span th:text="${message1}"></span>
 	
@@ -32,15 +37,5 @@
 			<th>部署名１</th><td th:text="${syain.department1}"></td><th>部署名２</th><td th:text="${syain.department2}"></td><th></th><td></td>
 		</tr>
 	</table>
-	<br>
-	<h3>基本情報編集</h3><br>
-	<span>別の画面が開きます。</span>
-	<form action="/syain" method="post" th:object="${kihon}">
-		<div>
-			<input type="text" th:field="${kihon.kei_st}" placeholder="契約開始日">
-			<input type="hidden" th:field="${kihon.kihon_id}" >
-			<input type="submit" value="検索">
-		</div>
-	</form><br>
 </body>
 </html>
