@@ -1,9 +1,11 @@
 package com.example.demo;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
 public class Syain {
+	@NotBlank(message = "値を入力してください。")
 	private String syain_id;
 	private String name;
 	private String age;
