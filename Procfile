@@ -1,1 +1,0 @@
-web: java -jar target/kintai.git-1.0.0-SNAPSHOT.jar
