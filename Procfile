@@ -1,1 +1,1 @@
-web: java -jar build/libs/kintai-0.0.1-SNAPSHOT-boot.jar
+web: java -jar build/libs/kintai-0.0.1-SNAPSHOT-boot.jar $PORT
