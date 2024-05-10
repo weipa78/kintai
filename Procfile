@@ -1,1 +1,1 @@
-web: java -jar target/kintai-1.0.0-SNAPSHOT.jar
+web: java -jar lib/kintai-1.0.0-SNAPSHOT.jar
