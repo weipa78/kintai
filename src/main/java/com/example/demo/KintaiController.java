@@ -58,12 +58,20 @@ public class KintaiController {
 	public String kihonJyoho(@RequestParam("syain_id") int syain_id, Kihon kihon, Model model) {
 		String sql = "SELECT * FROM kihon WHERE kihon_id = ?";
 		List<Kihon> kihons = null;
+		System.out.println("syain_id = " + syain_id);
 		if (syain_id >= 1) {
 			Object[] args = new Object[] {syain_id};
 			RowMapper<Kihon> rowMapper = BeanPropertyRowMapper.newInstance(Kihon.class);
 			kihons = jdbc.query(sql, rowMapper, args);
-		} 
-		
+		} else {
+			Syain syain = new Syain();
+			kihon = new Kihon();
+			model.addAttribute("message1", "1以上の番号を入力してください。");
+			model.addAttribute("syain", syain);
+			model.addAttribute("kihon", kihon);
+			return "index";
+		}
+		System.out.println("kihons = " + kihons);
 		String name = "";
 		for (int i = 0; i < 1; i++) {
 			kihon = kihons.get(0);
@@ -155,6 +163,7 @@ public class KintaiController {
 	//基本契約情報選択画面から更新入力画面に遷移する。
 	@PostMapping("/update")
 	public String update(@RequestParam("number") int number, Kihon kihon, Model model) {
+		System.out.println("number = " + number);
 		String sql = "SELECT * FROM kihon WHERE number = ?";
 		Object[] args = new Object[] {number};
 		RowMapper<Kihon> rowMapper = BeanPropertyRowMapper.newInstance(Kihon.class);
@@ -165,7 +174,9 @@ public class KintaiController {
 	//更新入力画面から更新確認画面に遷移する。
 	@PostMapping("/updateConfirm")
 	public String updateConfirm(@ModelAttribute Kihon kihon, @RequestParam("number") int number, 
-			@RequestParam("kihon_id") int kihon_id, @RequestParam("kihon_name") String kihon_name, Model model) {
+			@RequestParam("kihon_id") int kihon_id, @RequestParam("name") String name, Model model) {
+		System.out.println("name = " + name);
+		kihon.setKihon_name(name);
 		model.addAttribute("kihon", kihon);
 		return "updateConfirm";
 	}
