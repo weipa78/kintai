@@ -41,16 +41,23 @@ public class KintaiController {
 	@PostMapping("/syain")
 	public String syainJyoho(@RequestParam("syain_id") String syain_id
 			, @Validated Syain syain, BindingResult bindingResult, Kihon kihon, Model model) {
-		String sql = "SELECT * FROM syain WHERE syain_id = ?";
-		if (bindingResult.hasErrors()) {
+		if (syain_id.equals("1") || syain_id.equals("2")){
+			String sql = "SELECT * FROM syain WHERE syain_id = ?";
+			if (bindingResult.hasErrors()) {
+				return "index";
+			}
+			Object[] args = new Object[] {syain_id};
+			RowMapper<Syain> rowMapper = BeanPropertyRowMapper.newInstance(Syain.class);
+			syain = jdbc.queryForObject(sql, rowMapper, args);
+			model.addAttribute("syain", syain);
+			model.addAttribute("kihon", kihon);
+			return "index";
+		} else {
+			model.addAttribute("message1", "社員番号は1、または2を選択してください。");
+			model.addAttribute("syain", syain);
+			model.addAttribute("kihon", kihon);
 			return "index";
 		}
-		Object[] args = new Object[] {syain_id};
-		RowMapper<Syain> rowMapper = BeanPropertyRowMapper.newInstance(Syain.class);
-		syain = jdbc.queryForObject(sql, rowMapper, args);
-		model.addAttribute("syain", syain);
-		model.addAttribute("kihon", kihon);
-		return "index";
 	}
 	
 	//社員番号で基本契約情報（一覧）を検索
@@ -59,14 +66,14 @@ public class KintaiController {
 		String sql = "SELECT * FROM kihon WHERE kihon_id = ?";
 		List<Kihon> kihons = null;
 		System.out.println("syain_id = " + syain_id);
-		if (syain_id >= 1) {
+		if (syain_id == 1 || syain_id == 2) {
 			Object[] args = new Object[] {syain_id};
 			RowMapper<Kihon> rowMapper = BeanPropertyRowMapper.newInstance(Kihon.class);
 			kihons = jdbc.query(sql, rowMapper, args);
 		} else {
 			Syain syain = new Syain();
 			kihon = new Kihon();
-			model.addAttribute("message1", "1以上の番号を入力してください。");
+			model.addAttribute("message1", "社員番号は1、または2を選択してください。");
 			model.addAttribute("syain", syain);
 			model.addAttribute("kihon", kihon);
 			return "index";
