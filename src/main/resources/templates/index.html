@@ -7,18 +7,22 @@
 	body {
 		outline: black 1px solid;
 		width: 800px;
-		height: 400px;
+		height: 500px;
 	}
 </style>
 </head>
 <body>
-<h1>勤怠メニュー</h1><br>
+<h1>勤怠メニュー</h1>
+	<p>１．入力欄に社員番号を入力し、「社員情報表示」ボタンを押すと社員情報が表示されます。<br>
+		２．入力欄に番号が入力済の状態で「基本情報編集」ボタンを押すと編集画面（一覧）が表示されます。<br>
+		※社員番号は１または２のみ登録されています。
+	</p><br>
 	<h3>社員検索</h3>
 	<form method="post" th:object="${syain}">
 		<div>
 			<input type="text" th:field="*{syain_id}" id="syain_id1" placeholder="社員番号">
 			<input type="submit" formaction="/syain" formmethod="post" value="社員情報表示">
-			<input type="submit" formaction="/kihon" formmethod="post" value="基本情報編集（一覧表示）">
+			<input type="submit" formaction="/kihon" formmethod="post" value="基本情報編集">
 		</div>
 		<ul th:if="${#fields.hasErrors('*')}">
 			<li th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
