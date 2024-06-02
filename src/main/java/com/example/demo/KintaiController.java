@@ -53,7 +53,7 @@ public class KintaiController {
 			model.addAttribute("kihon", kihon);
 			return "index";
 		} else {
-			model.addAttribute("message1", "社員番号は1、または2を選択してください。");
+			model.addAttribute("message1", "社員番号は半角数字で1、または2を選択してください。");
 			model.addAttribute("syain", syain);
 			model.addAttribute("kihon", kihon);
 			return "index";
